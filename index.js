@@ -15,6 +15,7 @@ server.get('/', function(request, response){
 });
 //connect to the database
 mongoose.connect(mongoURI);
+server.use(express.static(__dirname + '/public'));
 server.use(todoRouter);
 server.listen(port, function(){
   console.log('Now listening on port...', port);
