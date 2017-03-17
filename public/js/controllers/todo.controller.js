@@ -5,12 +5,15 @@
     TodoController.$inject = ['$scope', 'TodoService'];
 
     function TodoController($scope, TodoService){
-        $scope.message = 'I work!';
-        $scope.greeting = 'Hello';
-        $scope.print = print;
+        $scope.todos = [];
+        $scope.getTodos = getTodos;
 
-        function print(something){
-          TodoService.getAll();
+        function getTodos(){
+          console.log('Getting The Todos...');
+          TodoService.getAll()
+                    .then(function(response){
+                      $scope.todos = response.data.todos;
+                    });
         }
       }
-    })()
+    })();
